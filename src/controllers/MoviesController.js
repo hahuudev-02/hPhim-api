@@ -1,28 +1,47 @@
-import { movieModel } from "../models/movies.model.js";
+import movieModel from "../models/movies.model.js";
+import APIfeatures from "../util/features.js";
 
 class MoviesController {
     index(req, res) {
-        movieModel.find({})
-        .populate('chapMp4s')
-        .exec(function (err, movies) {
-            if (!err) {
-                res.json(movies);
-            }
-        });
+        // const features = new APIfeatures(movieModel.find, req.query);
+
+        const page = req.query.page * 1 || 1;
+        const limit = req.query.limit * 1 || 5;
+
+        movieModel
+            .find({})
+            .populate("chapMp4s")
+            .limit(limit).skip(page)
+            .exec(function (err, movies) {
+                if (!err) {
+                    res.json(movies);
+                }
+            });
+    }
+    searchMovieByName(req, res) {
+        console.log(req.query.q);
+        movieModel
+            .find({ $text: { $search: req.query.q } })
+            .populate("chapMp4s")
+            .exec((err, movies) => {
+                if (!err) {
+                    res.json(movies);
+                    console.log(movies.name);
+                }
+            });
     }
 
-    getMovie(req, res) {
-        console.log(req.params.slug);
-        movieModel.findOne({slug: req.params.slug})
-        .exec(function (err, movies) {
+    getMovieBySlug(req, res) {
+        res.send("hii");
+        movieModel.findOne({ slug: req.params.slug }).exec(function (err, movie) {
             if (!err) {
-                res.json(movies);
+                res.json(movie);
             }
         });
     }
 
     create(req, res) {
-        
+        res.send("hiii");
     }
 }
 

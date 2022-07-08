@@ -13,4 +13,9 @@ const movie = new Schema({
     updatedAt: {type: Date, default: Date.now}
 })
 
-export const movieModel = mongoose.model('movies', movie)
+movie.index({ name: 'text'})
+
+const movieModel = mongoose.model('movies', movie);
+
+movieModel.createIndexes({title: 'text'})
+export default movieModel;
