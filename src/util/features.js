@@ -7,7 +7,6 @@ export default function APIfeatures(query, queryString) {
         const page = this.queryString.page*1 || 1;
         const limit = this.queryString.limit*1 || 5;
 
-        console.log(page, limit);
         return this;
     }
 }
