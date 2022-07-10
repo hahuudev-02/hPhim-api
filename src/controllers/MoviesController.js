@@ -25,7 +25,7 @@ class MoviesController {
             .populate("chapMp4s")
             .exec((err, movies) => {
                 if (!err) {
-                    res.json("movies");
+                    res.json(movies);
                 }
             });
     }
