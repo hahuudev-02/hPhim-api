@@ -14,7 +14,8 @@ class MoviesController {
             .limit(limit).skip(page)
             .exec(function (err, movies) {
                 if (!err) {
-                    res.json(movies);
+                    console.log(movies);
+                    res.json(movies);  
                 }
             });
     }
@@ -32,7 +33,6 @@ class MoviesController {
     }
 
     getMovieBySlug(req, res) {
-        res.send("hii");
         movieModel.findOne({ slug: req.params.slug }).exec(function (err, movie) {
             if (!err) {
                 res.json(movie);
