@@ -4,7 +4,6 @@ class chapMp4sController {
 
     index(req, res) {
         chapMp4Model.find({})
-        .populate('movieId')
         .exec(function (err, newMovies) {
             if (!err) {
                 res.json(newMovies);
