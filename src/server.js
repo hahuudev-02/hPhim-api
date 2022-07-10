@@ -1,11 +1,12 @@
 import express from "express";
+import "dotenv/config";
 import cors from "cors";
 import router from "./routes/index.js";
 import mongoose from "mongoose";
 import { connectDB } from "./config/mongoose.js";
 
 const domain = "localhost";
-const PORT = 8017;
+const PORT = process.env.PORT || 8017;
 
 const app = express();
 app.use(cors());
