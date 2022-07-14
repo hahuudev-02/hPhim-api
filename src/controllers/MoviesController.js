@@ -31,7 +31,7 @@ class MoviesController {
     }
 
     getMovieBySlug(req, res) {
-        movieModel.findOne({ slug: req.params.slug }).exec(function (err, movie) {
+        movieModel.findOne({ slug: req.params.slug }).populate("chapMp4s").exec(function (err, movie) {
             if (!err) {
                 res.json(movie);
             }
