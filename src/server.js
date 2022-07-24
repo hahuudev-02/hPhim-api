@@ -5,10 +5,10 @@ import router from "./routes/index.js";
 import mongoose from "mongoose";
 import { connectDB } from "./config/mongoose.js";
 
-const domain = "localhost";
 const PORT = process.env.PORT || 8017;
 
 const app = express();
+app.use(express.json());
 app.use(cors());
 
 app.get("/", (req, res) => {

@@ -5,17 +5,18 @@ class MoviesController {
     index(req, res) {
         // const features = new APIfeatures(movieModel.find, req.query);
 
-        const page = req.query.page * 1 ;
-        const limit = req.query.limit * 1 ;
-        const skip = limit * (page -1)
+        const page = req.query.page * 1;
+        const limit = req.query.limit * 1;
+        const skip = limit * (page - 1);
 
         movieModel
             .find({})
             .populate("chapMp4s")
-            .limit(limit).skip(skip)
+            .limit(limit)
+            .skip(skip)
             .exec(function (err, movies) {
                 if (!err) {
-                    res.json(movies);  
+                    res.json(movies);
                 }
             });
     }
@@ -31,15 +32,20 @@ class MoviesController {
     }
 
     getMovieBySlug(req, res) {
-        movieModel.findOne({ slug: req.params.slug }).populate("chapMp4s").exec(function (err, movie) {
-            if (!err) {
-                res.json(movie);
-            }
-        });
+        movieModel
+            .findOne({ slug: req.params.slug })
+            .populate("chapMp4s")
+            .exec(function (err, movie) {
+                if (!err) {
+                    res.json(movie);
+                }
+            });
     }
 
     create(req, res) {
-        res.send("hiii");
+        const movies = new movieModel(req.body);
+        movies.save();
+        res.status(200).json(movies);
     }
 }
 
