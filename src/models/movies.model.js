@@ -10,6 +10,8 @@ const movie = new Schema(
         slug: { type: String, maxLength: 100, slug: "name", unique: true },
         img_p: { type: String, maxLength: 100, default: "" },
         chapMp4s: [{ type: Schema.Types.ObjectId, ref: "chapmp4s", default: [] }],
+        content: { type: String, maxLength: 100, default: "" },
+        genre: { type: String, maxLength: 20, default: "" }
     },
     { timestamps: true }
 );
