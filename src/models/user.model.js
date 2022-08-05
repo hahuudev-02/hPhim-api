@@ -9,15 +9,15 @@ const user = new Schema({
     // password: { type: String, minlength: 6, required: true },
     admin: { type: Boolean, default: false },
     // editor: { type: Boolean, default: false },
-    moviesId: [{ type: Schema.Types.ObjectId, ref: "movies" }],
+    moviesId: [{ type: Schema.Types.ObjectId, ref: "movies", default: [] }],
     createdAt: { type: Date, default: Date.now },
     updatedAt: { type: Date, default: Date.now },
 });
 
-user.index({ name: "text" });
+// user.index({ name: "text" });
 
 const userModel = mongoose.model("user", user);
 
-userModel.createIndexes({ title: "text" });
+// userModel.createIndexes({ title: "text" });
 
 export default userModel;

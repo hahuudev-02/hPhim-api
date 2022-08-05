@@ -5,5 +5,5 @@ import { usersRoutes } from "./user.route.js";
 export default function router(app) {
     app.use("/api/movies", moviesRoutes);
     app.use("/api/chapmp4s", chapMp4sRoutes);
-    app.use("/api/user", usersRoutes);
+    app.use("/api/users", usersRoutes);
 }
