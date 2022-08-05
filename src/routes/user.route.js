@@ -1,11 +1,8 @@
 import express from "express";
-import UsersController from "../controllers/UsersController.js"
+import UsersController from "../controllers/UsersController.js";
 
 const router = express.Router();
 
-// router.route('/search')
-//     .get('/', )
-router.route('/')
-    .get( UsersController.index)
+router.route("/").get(UsersController.index).post(UsersController.create);
 
-export const usersRoutes = router;    
+export const usersRoutes = router;
