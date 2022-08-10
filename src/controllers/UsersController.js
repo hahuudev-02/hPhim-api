@@ -2,6 +2,7 @@ import userModel from "../models/user.model.js";
 
 class UsersController {
     index(req, res) {
+        
         userModel
             .find({})
             .populate({
@@ -13,6 +14,16 @@ class UsersController {
                     res.json(users);
                 }
             });
+    }
+
+    getUsersByEmail(req, res) {
+        const email = req.headers.email
+        // console.log(email);
+        userModel.findOne({email: email}).exec(function (err, user) {
+            if(!err) { 
+                res.json(user);
+            }
+        })
     }
 
     async create(req, res) {
