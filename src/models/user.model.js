@@ -7,7 +7,7 @@ const user = new Schema({
     email: { type: String, maxLength: 100, required: true },
     img_user: { type: String, maxLength: 100, default: "" },
     // password: { type: String, minlength: 6, required: true },
-    admin: { type: Boolean, default: false },
+    is_Admin: { type: Boolean, default: false },
     // editor: { type: Boolean, default: false },
     moviesId: [{ type: Schema.Types.ObjectId, ref: "movies", default: [] }],
     createdAt: { type: Date, default: Date.now },
