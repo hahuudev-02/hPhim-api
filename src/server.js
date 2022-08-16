@@ -26,4 +26,3 @@ mongoose.connection.once("open", () => {
     });
 });
 
-
