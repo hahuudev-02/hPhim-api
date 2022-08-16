@@ -5,10 +5,23 @@ import router from "./routes/index.js";
 import mongoose from "mongoose";
 import { connectDB } from "./config/mongoose.js";
 
+const app = express();
 const PORT = process.env.PORT || 8017;
 
-const app = express();
-app.use(cors());
+const whitelist = ["http://localhost:3000", "https://hphim.vercel.app", "https://www.hahuudev.online"];
+const corsOptions = {
+    origin: function (origin, callback) {
+        if (whitelist.indexOf(origin) !== -1) {
+            callback(null, true);
+        } else {
+            callback(new Error(`${origin} Not allowed by CORS`));
+        }
+    },
+    optionsSuccessStatus: 200,
+};
+
+app.use(cors(corsOptions));
+
 app.use(express.json());
 
 app.get("/", (req, res) => {
@@ -16,6 +29,7 @@ app.get("/", (req, res) => {
 });
 
 connectDB();
+
 mongoose.connection.once("open", () => {
     console.log("Connect tới DB successfully");
 
@@ -25,59 +39,3 @@ mongoose.connection.once("open", () => {
         console.log(`Em đã nắng nghe ${PORT}`);
     });
 });
-
-// import mongoose from 'mongoose';
-// const Schema = mongoose.Schema;
-
-// const user = new Schema({
-//     name: {type: String, maxLength: 100, required: true},
-//     slug: {type: String, maxLength: 100},
-//     blogs: {type: Array, default: [], ref: "blog"},
-
-//     createdAt: {type: Date, default: Date.now},
-//     updatedAt: {type: Date, default: Date.now}
-// })
-
-// const blog = new Schema({
-//     userId: {type: String, required: true, ref: "user"},
-//     chapter: {type: String, maxLength: 100},
-//     blogLink: {type: String, maxLength: 100},
-
-//     createdAt: {type: Date, default: Date.now},
-//     updatedAt: {type: Date, default: Date.now}
-// })
-
-// const apigetUser = [
-//     {
-//         _id: 'user1',
-//         name: 'nguyễn văn huy',
-//         blog: [
-//             {
-//                 _id: 'blog1',
-//                 userId: 'user1',
-//                 name: 'blog1'
-//             },
-//             {
-//                 _id: 'blog2',
-//                 userId: 'user1',
-//                 name: 'blog2'
-//             },
-//         ]
-//     },
-//     {
-//         _id: 'user2',
-//         name: 'hà văn huy',
-//         blog: [
-//             {
-//                 _id: 'blog4',
-//                 userId: 'user2',
-//                 name: 'blog4'
-//             },
-//             {
-//                 _id: 'blog6',
-//                 userId: 'user2',
-//                 name: 'blog6'
-//             },
-//         ]
-//     },
-// ]
