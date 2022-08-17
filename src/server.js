@@ -5,10 +5,26 @@ import router from "./routes/index.js";
 import mongoose from "mongoose";
 import { connectDB } from "./config/mongoose.js";
 
+const app = express();
 const PORT = process.env.PORT || 8017;
 
+
+const whitelist = ["http://localhost:3000", "https://hphim.vercel.app", "https://www.hahuudev.online"];
+const corsOptions = {
+    origin: function (origin, callback) {
+        if (whitelist.indexOf(origin) !== -1) {
+            callback(null, true);
+        } else {
+            callback(new Error(`${origin} Not allowed by CORS`));
+        }
+    },
+    optionsSuccessStatus: 200,
+};
+
+app.use(cors(corsOptions));
+
+
 const app = express();
-// app.use(cors());
 app.use(express.json());
 
 app.get("/", (req, res) => {
@@ -16,6 +32,7 @@ app.get("/", (req, res) => {
 });
 
 connectDB();
+
 mongoose.connection.once("open", () => {
     console.log("Connect tới DB successfully");
 
