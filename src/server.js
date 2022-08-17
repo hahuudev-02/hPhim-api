@@ -8,6 +8,7 @@ import { connectDB } from "./config/mongoose.js";
 const app = express();
 const PORT = process.env.PORT || 8017;
 
+
 const whitelist = ["http://localhost:3000", "https://hphim.vercel.app", "https://www.hahuudev.online"];
 const corsOptions = {
     origin: function (origin, callback) {
@@ -22,6 +23,8 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
+
+const app = express();
 app.use(express.json());
 
 app.get("/", (req, res) => {
@@ -39,3 +42,4 @@ mongoose.connection.once("open", () => {
         console.log(`Em đã nắng nghe ${PORT}`);
     });
 });
+
