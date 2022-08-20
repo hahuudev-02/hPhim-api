@@ -1,14 +1,20 @@
 import express from "express";
 import "dotenv/config";
-import cors from "cors";
-import router from "./routes/index.js";
 import mongoose from "mongoose";
+import cors from "cors";
+
+import router from "./routes/index.js";
 import { connectDB } from "./config/mongoose.js";
 
 const app = express();
 const PORT = process.env.PORT || 8017;
 
-const whitelist = ["http://localhost:3000", "https://hphim.vercel.app", "https://www.hahuudev.online"];
+const whitelist = [
+    "http://localhost:3000",
+    "http://localhost:8017",
+    "https://hphim.vercel.app",
+    "https://www.hahuudev.online",
+];
 const corsOptions = {
     origin: function (origin, callback) {
         if (whitelist.indexOf(origin) !== -1) {
