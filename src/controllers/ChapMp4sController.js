@@ -37,7 +37,7 @@ class chapMp4sController {
                 }
             }
 
-            return res.status(200).json(linkArrs);
+            return res.status(200).json({ message: "Update successfully" });
         } catch (error) {}
     }
 }
