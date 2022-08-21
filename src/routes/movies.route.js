@@ -10,11 +10,12 @@ router.route("/search")
     // Get Movie theo slug
 router.route("/:slug")
     .get(MoviesController.getMovieBySlug)
-
+    
     // Get FullMovies
-router.route("/")
+    router.route("/")
     .get(MoviesController.index)
     .post(MoviesController.create)
+    .put(MoviesController.update)
 
 
 export const moviesRoutes = router;
