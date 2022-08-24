@@ -56,7 +56,7 @@ class MoviesController {
         };
         const movies = new movieModel(movie);
         movies.save();
-        
+
         const user = await userModel.findById(req.body.userId);
 
         if (!!user && !user.is_Admin) {
@@ -79,6 +79,11 @@ class MoviesController {
             }
         );
         return res.status(200).json({ message: "successfully updated" });
+    }
+
+    async delete(req, res) {
+        await movieModel.deleteOne({ _id: req.query.id });
+        res.status(200).json({ message: "successfully deleted" });
     }
 }
 
