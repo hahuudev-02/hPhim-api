@@ -16,6 +16,7 @@ router.route("/:slug")
     .get(MoviesController.index)
     .post(MoviesController.create)
     .put(MoviesController.update)
+    .delete(MoviesController.delete)
 
 
 export const moviesRoutes = router;

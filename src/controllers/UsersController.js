@@ -27,7 +27,7 @@ class UsersController {
     }
 
     async create(req, res) {
-        const newUser = await new userModel(req.body);
+        const newUser = new userModel(req.body);
         await newUser.save();
         res.status(200).json(newUser);
     }
