@@ -16,8 +16,6 @@ const whitelist = [
     "https://www.hahuudev.online",
 ];
 
-const whitelist = ["http://localhost:3000", "https://hphim.vercel.app", "https://www.hahuudev.online"];
-
 const corsOptions = {
     origin: function (origin, callback) {
         if (whitelist.indexOf(origin) !== -1) {
@@ -48,4 +46,3 @@ mongoose.connection.once("open", () => {
         console.log(`Em đã nắng nghe ${PORT}`);
     });
 });
-
