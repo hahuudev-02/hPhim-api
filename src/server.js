@@ -32,7 +32,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.get("/", (req, res) => {
-    res.send("hello world");
+    res.send("Hello Nguyễn Hà Hữu");
 });
 
 connectDB();

@@ -3,9 +3,9 @@ const Schema = mongoose.Schema;
 
 const chapMp4 = new Schema(
     {
-        chapter: { type: String, maxLength: 10 },
-        mp4Link: { type: String, maxLength: 50 },
-        name: { type: String, maxLength: 50 },
+        chapter: { type: String, maxLength: 100 },
+        mp4Link: { type: String, maxLength: 500 },
+        name: { type: String, maxLength: 500 },
     },
     { timestamps: true }
 );
